@@ -1,21 +1,20 @@
 # Dockerfile
 FROM node:20-alpine
 
-# Install Git
 RUN apk add --no-cache git
 
-# Working directory
-WORKDIR /app
-
-# Build args (optional if you want to inject URL via build-arg too)
+# Clone repo ไปที่ /repo
+WORKDIR /repo
 ARG GIT_REPO
 ENV GIT_REPO=${GIT_REPO}
-
-# Clone repo
 RUN git clone ${GIT_REPO} .
 
-# Install dependencies
+# สร้าง Working Directory ใหม่
+WORKDIR /app
+
+# ย้ายไฟล์ที่จำเป็นออกจาก /repo/app
+RUN cp -r /repo/app/* . && cp /repo/package.json .
+
 RUN npm install
 
-# Start the app
 CMD ["npm", "start"]
