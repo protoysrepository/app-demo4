@@ -4,16 +4,11 @@ version: '3.8'
 services:
   app-demo4:
     build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        USERNAME: ${USERNAME}
-        REPOSITORY: ${REPOSITORY}
-    image: app-demo4
+      context: ${REPO_URL}       # ✅ Build directly from GitHub
     container_name: app-demo4
-    restart: unless-stopped
     ports:
-      - "${PORT}:3000"
+      - "${PORT}:3000"           # ✅ Map external port to internal app port
+    restart: unless-stopped
     networks:
       - webnet
 
