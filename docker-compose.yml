@@ -2,10 +2,11 @@
 services:
   app-demo4:
     build:
-      context: .                # Build locally, Dockerfile handles the Git
+      context: .
       dockerfile: Dockerfile
       args:
-        GIT_REPO: ${GIT_REPO}  # Pass repo to Dockerfile
+        GIT_REPO: ${GIT_REPO}
+        BUILD_VERSION: ${BUILD_VERSION}
     ports:
       - "${PORT}:3000"
     container_name: app-demo4
