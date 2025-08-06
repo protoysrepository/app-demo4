@@ -1,0 +1,24 @@
+# .dockerignore
+# Node modules shouldn't be copied (we run npm install inside Docker)
+node_modules
+
+# Ignore Git metadata and unnecessary files
+.git
+.gitignore
+.gitattributes
+
+# Ignore environment files (you’re passing via ARG)
+.env
+.env.local
+
+# IDE/editor files
+.vscode
+.idea
+
+# OS or backup files
+.DS_Store
+Thumbs.db
+*.swp
+
+# Logs
+*.log

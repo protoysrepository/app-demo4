@@ -3,12 +3,17 @@ version: '3.8'
 
 services:
   app-demo4:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        USERNAME: ${USERNAME}
+        REPOSITORY: ${REPOSITORY}
     image: app-demo4
     container_name: app-demo4
     restart: unless-stopped
     ports:
-      - "8008:3000"
+      - "${PORT}:3000"
     networks:
       - webnet
 
