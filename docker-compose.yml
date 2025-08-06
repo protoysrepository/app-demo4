@@ -1,0 +1,17 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  app-demo4:
+    build: .
+    image: app-demo4
+    container_name: app-demo4
+    restart: unless-stopped
+    ports:
+      - "8008:3000"
+    networks:
+      - webnet
+
+networks:
+  webnet:
+    external: true
