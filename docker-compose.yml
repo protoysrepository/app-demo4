@@ -1,13 +1,14 @@
 # docker-compose.yml
-version: '3.8'
-
 services:
   app-demo4:
     build:
-      context: ${REPO_URL}       # ✅ Build directly from GitHub
-    container_name: app-demo4
+      context: .                # Build locally, Dockerfile handles the Git
+      dockerfile: Dockerfile
+      args:
+        GIT_REPO: ${GIT_REPO}  # Pass repo to Dockerfile
     ports:
-      - "${PORT}:3000"           # ✅ Map external port to internal app port
+      - "${PORT}:3000"
+    container_name: app-demo4
     restart: unless-stopped
     networks:
       - webnet
